@@ -4,6 +4,7 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
+import dash_daq as daq
 
 # Imports from this application
 from app import app
@@ -11,9 +12,11 @@ from app import app
 
 row = html.Div(
     [
+        # 1st Row. Introductory Marks
         dbc.Row(dbc.Col(html.Div('''Welcome to our predictions page! Fill out the form as accurately as possible,
                                  and we will compare similar properties (bases on amenities and location) and 
                                  provide you with the best estimate for your daily rental price on AirBnB.''', className='mb-4'))),
+        # 2nd Row. Includes Property Type, Room Type
         dbc.Row(
             [
                 dbc.Col(
@@ -54,7 +57,8 @@ row = html.Div(
                                 {'label': 'Casa particular', 'value': 'Casa particular'},
                                 {'label': 'Train', 'value': 'Train'}
                             ],
-                            value='Apartment'
+                            value='Apartment',
+                            className='mb-4',
                         ),  
                     ],
                 ),
@@ -67,7 +71,54 @@ row = html.Div(
                                 {'label': 'Private Room', 'value': 'Private room'},
                                 {'label': 'Shared room', 'value': 'Shared room'}
                             ],
-                            value='Entire home/apt'
+                            value='Entire home/apt',
+                            className='mb-4',
+                        ),  
+                    ],
+                ),
+            ]
+        ),
+        # 3rd Row. Includes Accomadates, Number of bathrooms
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown("##### Accomadates", className='mb-1'),
+                        daq.NumericInput(
+                            id='my-daq-accomadates',
+                            min=1,
+                            max=16,
+                            value=1,
+                        ),  
+                    ],
+                ),
+                dbc.Col(
+                    [
+                        dcc.Markdown("##### Number of Bathrooms", className='mb-1'),
+                        dcc.Slider(
+                            min=0,
+                            max=8,
+                            step=0.5,
+                            marks={
+                                0: '0',
+                                0.5: '0.5',
+                                1: '1',
+                                1.5: '1.5',
+                                2: '2',
+                                2.5: '2.5',
+                                3: '3',
+                                3.5: '3.5',
+                                4: '4',
+                                4.5: '4.5',
+                                5: '5',
+                                5.5: '5.5',
+                                6: '6',
+                                6.5: '6.5',
+                                7: '7',
+                                7.5: '7.5',
+                                8: '8'
+                            },    
+                            value=1,
                         ),  
                     ],
                 ),
