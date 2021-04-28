@@ -9,7 +9,7 @@ import pandas as pd
 
 # Imports from this application
 from app import app
-from pages import zip_code
+from pred_lists import zip_code, neighborhood
 
 
 row = html.Div(
@@ -264,11 +264,9 @@ row = html.Div(
                 dbc.Col(
                     [
                         dcc.Markdown("##### Neighborhood", className='mb-1'),
-                        dcc.Input(
+                        dcc.Dropdown(
                             id='neighborhood',
-                            placeholder='Enter a value...',
-                            type='text',
-                            value='',
+                            options=neighborhood.neighborhoods,
                             className='mb-4',
                         ),
                     ],
@@ -277,7 +275,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### Zipcode", className='mb-1'),
                         dcc.Dropdown(
-                            id='zip',
+                            id='zipcode',
                             options=zip_code.total_zip,
                             className='mb-4',
                         ),
