@@ -5,6 +5,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 import dash_daq as daq
+import pandas as pd
 
 # Imports from this application
 from app import app
@@ -23,6 +24,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### Property Type", className='mb-1'),
                         dcc.Dropdown(
+                            id='property',
                             options=[
                                 {'label': 'Apartment', 'value': 'Apartment'},
                                 {'label': 'House', 'value': 'House'},
@@ -66,6 +68,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### Room Type", className='mb-1'),
                         dcc.Dropdown(
+                            id='room',
                             options=[
                                 {'label': 'Entire Home/Apartment', 'value': 'Entire home/apt'},
                                 {'label': 'Private Room', 'value': 'Private room'},
@@ -85,7 +88,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### Accomadates", className='mb-1'),
                         daq.NumericInput(
-                            id='my-daq-accomadates',
+                            id='accomadates',
                             min=1,
                             max=16,
                             value=1,
@@ -97,6 +100,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### Number of Bathrooms", className='mb-1'),
                         dcc.Slider(
+                            id='bathrooms',
                             min=0,
                             max=8,
                             step=0.5,
@@ -133,7 +137,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### Number of Bedrooms", className='mb-1'),
                         daq.NumericInput(
-                            id='my-daq-bedrooms',
+                            id='bedrooms',
                             min=0,
                             max=10,
                             value=1,
@@ -145,7 +149,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### Number of Beds", className='mb-1'),
                         daq.NumericInput(
-                            id='my-daq-beds',
+                            id='beds',
                             min=0,
                             max=18,
                             value=1,
@@ -162,6 +166,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### Bed Type", className='mb-1'),
                         dcc.Dropdown(
+                            id='bedtype',
                             options=[
                                 {'label': 'Real Bed', 'value': 'Real Bed'},
                                 {'label': 'Futon', 'value': 'Futon'},
@@ -177,6 +182,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### Cancellation Policy", className='mb-1'),
                         dcc.Dropdown(
+                            id='cancellation',
                             options=[
                                 {'label': 'Strict', 'value': 'strict'},
                                 {'label': 'Flexible', 'value': 'flexible'},
@@ -197,7 +203,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### Includes Cleaning Fee", className='mb-1'),
                         daq.BooleanSwitch(
-                            id='my-daq-boolean-cleaning',
+                            id='cleaning',
                             on=True,
                             label='Blue = True',
                             className='mb-4',
@@ -208,6 +214,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### City", className='mb-1'),
                         dcc.Dropdown(
+                            id='city',
                             options=[
                                 {'label': 'New York City', 'value': 'NYC'},
                                 {'label': 'Los Angeles', 'value': 'LA'},
@@ -229,7 +236,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### You Are a Verified Host", className='mb-1'),
                         daq.BooleanSwitch(
-                            id='my-daq-boolean-host',
+                            id='verified-host',
                             on=True,
                             label='Blue = True',
                             className='mb-4',
@@ -240,7 +247,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### Is Instantly Bookable", className='mb-1'),
                         daq.BooleanSwitch(
-                            id='my-daq-boolean-bookable',
+                            id='bookable',
                             on=True,
                             label='Blue = True',
                             className='mb-4',
@@ -257,6 +264,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### Neighborhood", className='mb-1'),
                         dcc.Input(
+                            id='neighborhood',
                             placeholder='Enter a value...',
                             type='text',
                             value='',
@@ -268,6 +276,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### Zipcode", className='mb-1'),
                         dcc.Input(
+                            id='zipcode',
                             placeholder='Enter a value...',
                             type='text',
                             value='',
@@ -281,3 +290,42 @@ row = html.Div(
 )
 
 layout = row
+
+
+# column2 = dbc.Col(
+#     [
+#         html.H2('Expected Lifespan', className='mb-5'), 
+#         html.Div(id='prediction-content', className='lead')
+#     ]
+# )
+
+
+# @app.callback(
+#     Output('prediction-content', 'children'),
+#     [
+#         Input('property', 'value'), Input('room', 'value'), Input('accomadates', 'value'),
+#         Input('bathrooms', 'value'), Input('bedrooms', 'value'), Input('beds', 'value'),
+#         Input('bedtype', 'value'), Input('cancellation', 'value'), Input('cleaning', 'value'),
+#         Input('city', 'value'), Input('verified-host', 'value'), Input('bookable', 'value'),
+#         Input('neighborhood', 'value'), Input('zipcode', 'value')
+#     ],
+# )
+# def predict(year, continent):
+#     df = pd.DataFrame(
+#         columns=[
+#             'property', 'room', 'accomadates', 'bathrooms,',
+#             'bedrooms', 'beds', 'bedtype', 'cancellation',
+#             'cleaning', 'city', 'verified-host', 'bookable',
+#             'neighborhood', 'zipcode'
+#         ], 
+#         data=[
+#             [
+#                 property, room, accomadates, bathrooms,
+#                 bedrooms, beds, bedtype, cancellation,
+#                 cleaning, city, verified-host, bookable,
+#                 neighborhood, zipcode
+#             ]
+#         ]
+#     )
+#     y_pred = pipeline.predict(df)[0]
+#     return f'{y_pred:.0f} years'
