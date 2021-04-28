@@ -294,7 +294,7 @@ layout = row
 
 # column2 = dbc.Col(
 #     [
-#         html.H2('Expected Lifespan', className='mb-5'), 
+#         html.H2('Price Estimation', className='mb-5'), 
 #         html.Div(id='prediction-content', className='lead')
 #     ]
 # )
@@ -328,4 +328,4 @@ layout = row
 #         ]
 #     )
 #     y_pred = pipeline.predict(df)[0]
-#     return f'{y_pred:.0f} years'
+#     return f'{y_pred:.0f} dollars per day'
