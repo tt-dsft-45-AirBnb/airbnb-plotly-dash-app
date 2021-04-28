@@ -124,6 +124,33 @@ row = html.Div(
                 ),
             ]
         ),
+        # 4th Row. Includes Bedrooms, Beds
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown("##### Number of Bedrooms", className='mb-1'),
+                        daq.NumericInput(
+                            id='my-daq-bedrooms',
+                            min=0,
+                            max=10,
+                            value=1,
+                        ),  
+                    ],
+                ),
+                dbc.Col(
+                    [
+                        dcc.Markdown("##### Number of Beds", className='mb-1'),
+                        daq.NumericInput(
+                            id='my-daq-beds',
+                            min=0,
+                            max=18,
+                            value=1,
+                        ),    
+                    ],
+                ),
+            ]
+        ),
     ]
 )
 
