@@ -81,7 +81,7 @@ row = html.Div(
                 ),
             ]
         ),
-        # 3rd Row. Includes Accomadates, Number of bathrooms
+        # 3rd Row. Includes Accomadates, number of bathrooms
         dbc.Row(
             [
                 dbc.Col(
