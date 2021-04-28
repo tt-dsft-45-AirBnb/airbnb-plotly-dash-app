@@ -57,7 +57,7 @@ row = html.Div(
                                 {'label': 'Casa particular', 'value': 'Casa particular'},
                                 {'label': 'Train', 'value': 'Train'}
                             ],
-                            value='Apartment',
+                            # value='Apartment',
                             className='mb-4',
                         ),  
                     ],
@@ -71,7 +71,7 @@ row = html.Div(
                                 {'label': 'Private Room', 'value': 'Private room'},
                                 {'label': 'Shared room', 'value': 'Shared room'}
                             ],
-                            value='Entire home/apt',
+                            # value='Entire home/apt',
                             className='mb-4',
                         ),  
                     ],
@@ -89,6 +89,7 @@ row = html.Div(
                             min=1,
                             max=16,
                             value=1,
+                            className='mb-4',
                         ),  
                     ],
                 ),
@@ -119,6 +120,7 @@ row = html.Div(
                                 8: '8'
                             },    
                             value=1,
+                            className='mb-4',
                         ),  
                     ],
                 ),
@@ -135,6 +137,7 @@ row = html.Div(
                             min=0,
                             max=10,
                             value=1,
+                            className='mb-4',
                         ),  
                     ],
                 ),
@@ -146,6 +149,42 @@ row = html.Div(
                             min=0,
                             max=18,
                             value=1,
+                            className='mb-4',
+                        ),    
+                    ],
+                ),
+            ]
+        ),
+        # 5th Row. Includes bed_type, cancellation_policy
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown("##### Bed Type", className='mb-1'),
+                        dcc.Dropdown(
+                            options=[
+                                {'label': 'Real Bed', 'value': 'Real Bed'},
+                                {'label': 'Futon', 'value': 'Futon'},
+                                {'label': 'Pull-out Sofa', 'value': 'Pull-out Sofa'},
+                                {'label': 'Airbed', 'value': 'Airbed'},
+                                {'label': 'Couch', 'value': 'Couch'},
+                            ],
+                            className='mb-4',
+                        ),  
+                    ],
+                ),
+                dbc.Col(
+                    [
+                        dcc.Markdown("##### Cancellation Policy", className='mb-1'),
+                        dcc.Dropdown(
+                            options=[
+                                {'label': 'Strict', 'value': 'strict'},
+                                {'label': 'Flexible', 'value': 'flexible'},
+                                {'label': 'Moderate', 'value': 'moderate'},
+                                {'label': 'Super Strict 30', 'value': 'super_strict_30'},
+                                {'label': 'Super Strict 60', 'value': 'super_strict_60'},
+                            ],
+                            className='mb-4',
                         ),    
                     ],
                 ),
