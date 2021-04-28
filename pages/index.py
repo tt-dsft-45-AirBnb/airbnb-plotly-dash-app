@@ -18,11 +18,11 @@ column1 = dbc.Col(
         
             ## Predict your AirBnB Listing Price
 
-            ##### Attention property owners! Are you looking to earn some extra money off the property you own? 
-            ##### Do you feel AirBnB is the most convenient site to help rent out your property? 
-            ##### But you aren't sure what price to exactly list your property?
-            ##### Then you in luck. Our site will help you predict exactly what price you should list your property ny comparing similar
-            ##### properties in your neighborhoor. Click the button below and see how valuable your house is today.
+            Attention property owners! Are you looking to earn some extra money off the property you own? 
+            Do you feel AirBnB is the most convenient site to help rent out your property? 
+            But you aren't sure what price to exactly list your property?
+            Then you in luck. Our site will help you predict exactly what price you should list your property ny comparing similar
+            properties in your neighborhoor. Click the button below and see how valuable your house is today.
             
             """
         ),

@@ -9,6 +9,7 @@ import pandas as pd
 
 # Imports from this application
 from app import app
+from zip import total_zip
 
 
 row = html.Div(
@@ -275,11 +276,9 @@ row = html.Div(
                 dbc.Col(
                     [
                         dcc.Markdown("##### Zipcode", className='mb-1'),
-                        dcc.Input(
-                            id='zipcode',
-                            placeholder='Enter a value...',
-                            type='text',
-                            value='',
+                        dcc.Dropdown(
+                            id='zip',
+                            options=total_zip,
                             className='mb-4',
                         ),
                     ],
