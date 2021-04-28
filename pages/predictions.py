@@ -59,7 +59,7 @@ row = html.Div(
                             ],
                             # value='Apartment',
                             className='mb-4',
-                        ),  
+                        ),
                     ],
                 ),
                 dbc.Col(
@@ -73,7 +73,7 @@ row = html.Div(
                             ],
                             # value='Entire home/apt',
                             className='mb-4',
-                        ),  
+                        ),
                     ],
                 ),
             ]
@@ -90,7 +90,7 @@ row = html.Div(
                             max=16,
                             value=1,
                             className='mb-4',
-                        ),  
+                        ),
                     ],
                 ),
                 dbc.Col(
@@ -121,7 +121,7 @@ row = html.Div(
                             },    
                             value=1,
                             className='mb-4',
-                        ),  
+                        ),
                     ],
                 ),
             ]
@@ -150,7 +150,7 @@ row = html.Div(
                             max=18,
                             value=1,
                             className='mb-4',
-                        ),    
+                        ),
                     ],
                 ),
             ]
@@ -170,7 +170,7 @@ row = html.Div(
                                 {'label': 'Couch', 'value': 'Couch'},
                             ],
                             className='mb-4',
-                        ),  
+                        ),
                     ],
                 ),
                 dbc.Col(
@@ -185,7 +185,94 @@ row = html.Div(
                                 {'label': 'Super Strict 60', 'value': 'super_strict_60'},
                             ],
                             className='mb-4',
-                        ),    
+                        ),
+                    ],
+                ),
+            ]
+        ),
+        # 6th Row. Includes cleaning_fee, city
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown("##### Includes Cleaning Fee", className='mb-1'),
+                        daq.BooleanSwitch(
+                            id='my-daq-boolean-cleaning',
+                            on=True,
+                            label='Blue = True',
+                            className='mb-4',
+                        ),
+                    ],
+                ),
+                dbc.Col(
+                    [
+                        dcc.Markdown("##### City", className='mb-1'),
+                        dcc.Dropdown(
+                            options=[
+                                {'label': 'New York City', 'value': 'NYC'},
+                                {'label': 'Los Angeles', 'value': 'LA'},
+                                {'label': 'San Francisco', 'value': 'SF'},
+                                {'label': 'Washington DC', 'value': 'DC'},
+                                {'label': 'Boston', 'value': 'Boston'},
+                                {'label': 'Chicago', 'value': 'Chicago'},
+                            ],
+                            className='mb-4',
+                        ),
+                    ],
+                ),
+            ]
+        ),
+        # 7th Row. Includes host_identity_verified, instant_bookable
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown("##### You Are a Verified Host", className='mb-1'),
+                        daq.BooleanSwitch(
+                            id='my-daq-boolean-host',
+                            on=True,
+                            label='Blue = True',
+                            className='mb-4',
+                        ),
+                    ],
+                ),
+                dbc.Col(
+                    [
+                        dcc.Markdown("##### Is Instantly Bookable", className='mb-1'),
+                        daq.BooleanSwitch(
+                            id='my-daq-boolean-bookable',
+                            on=True,
+                            label='Blue = True',
+                            className='mb-4',
+                        ),
+                    ],
+                ),
+            ]
+        ),
+        # 8th Row. Includes neighbourhood, zipcode
+        # Will need to adjust or delete
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown("##### Neighborhood", className='mb-1'),
+                        dcc.Input(
+                            placeholder='Enter a value...',
+                            type='text',
+                            value='',
+                            className='mb-4',
+                        ),
+                    ],
+                ),
+                dbc.Col(
+                    [
+                        dcc.Markdown("##### Zipcode", className='mb-1'),
+                        dcc.Input(
+                            placeholder='Enter a value...',
+                            type='text',
+                            value='',
+                            className='mb-4',
+                        ),
                     ],
                 ),
             ]
@@ -194,28 +281,3 @@ row = html.Div(
 )
 
 layout = row
-
-# # 2 column layout. 1st column width = 4/12
-# # https://dash-bootstrap-components.opensource.faculty.ai/l/components/layout
-# column1 = dbc.Col(
-#     [
-#         dcc.Markdown(
-#             """
-        
-#             ## Predictions
-
-#             Your instructions: How to use your app to get new predictions.
-
-#             """
-#         ),
-#     ],
-#     md=4,
-# )
-
-# column2 = dbc.Col(
-#     [
-
-#     ]
-# )
-
-# layout = dbc.Row([column1, column2])
