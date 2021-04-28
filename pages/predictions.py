@@ -9,7 +9,7 @@ import pandas as pd
 
 # Imports from this application
 from app import app
-from zip import total_zip
+from pages import zip_code
 
 
 row = html.Div(
@@ -278,7 +278,7 @@ row = html.Div(
                         dcc.Markdown("##### Zipcode", className='mb-1'),
                         dcc.Dropdown(
                             id='zip',
-                            options=total_zip,
+                            options=zip_code.total_zip,
                             className='mb-4',
                         ),
                     ],
