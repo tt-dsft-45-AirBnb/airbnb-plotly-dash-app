@@ -258,7 +258,6 @@ row = html.Div(
             ]
         ),
         # 8th Row. Includes neighbourhood, zipcode
-        # Will need to adjust or delete
         dbc.Row(
             [
                 dbc.Col(
@@ -279,6 +278,45 @@ row = html.Div(
                             options=zip_code.total_zip,
                             className='mb-4',
                         ),
+                    ],
+                ),
+            ]
+        ),
+        # 9th Row. Includes amenities
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown("##### Amenities", className='mb-1'),
+                        dcc.Checklist(
+                            id='amenities',
+                            options=[
+                                {'label': 'TV', 'value': 'TV'},
+                                {'label': 'Cable TV', 'value': 'Cable TV'},
+                                {'label': 'Kitchen', 'value': 'Kitchen'},
+                                {'label': 'Free parking on premises ', 'value': 'Free parking on premises'},
+                                {'label': 'Breakfast ', 'value': 'Breakfast'},
+                                {'label': 'Elevator in building ', 'value': 'Elevator in building'},
+                                {'label': 'Heating ', 'value': 'Heating'},
+                                {'label': 'Washer ', 'value': 'Washer'},
+                                {'label': 'Dryer ', 'value': 'Dryer'},
+                                {'label': 'Smoke detector ', 'value': 'Smoke detector'},
+                                {'label': 'First aid kit ', 'value': 'First aid kit'},
+                                {'label': 'Safety card ', 'value': 'Safety card'},
+                                {'label': 'Fire extinguisher ', 'value': 'Fire extinguisher'},
+                                {'label': 'Hair dryer ', 'value': 'Hair dryer'},
+                                {'label': 'Laptop friendly workspace ', 'value': 'Laptop friendly workspace'},
+                                {'label': 'Wireless Internet ', 'value': 'Wireless Internet'},
+                                {'label': 'Air conditioning ', 'value': 'Air conditioning'},
+                                {'label': 'Gym ', 'value': 'Gym'},
+                                {'label': 'Carbon monoxide detector ', 'value': 'Carbon monoxide detector'},
+                                {'label': 'First aid kit ', 'value': 'First aid kit'},
+                                {'label': 'Wheelchair accessible ', 'value': 'Wheelchair accessible'},
+                                {'label': 'Family/kid friendly ', 'value': 'Family/kid friendly'},
+                            ],
+                            inputStyle={"margin-right": '8px'},
+                            labelStyle = {'margin-right':'15px'}
+                        )
                     ],
                 ),
             ]
@@ -304,7 +342,7 @@ layout = row
 #         Input('bathrooms', 'value'), Input('bedrooms', 'value'), Input('beds', 'value'),
 #         Input('bedtype', 'value'), Input('cancellation', 'value'), Input('cleaning', 'value'),
 #         Input('city', 'value'), Input('verified-host', 'value'), Input('bookable', 'value'),
-#         Input('neighborhood', 'value'), Input('zipcode', 'value')
+#         Input('neighborhood', 'value'), Input('zipcode', 'value'), Input('amenities', 'value')
 #     ],
 # )
 # def predict(year, continent):
@@ -313,7 +351,7 @@ layout = row
 #             'property', 'room', 'accomadates', 'bathrooms,',
 #             'bedrooms', 'beds', 'bedtype', 'cancellation',
 #             'cleaning', 'city', 'verified-host', 'bookable',
-#             'neighborhood', 'zipcode'
+#             'neighborhood', 'zipcode', 'amenities'
 #         ], 
 #         data=[
 #             [
