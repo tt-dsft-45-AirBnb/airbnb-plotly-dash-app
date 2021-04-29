@@ -6,6 +6,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import dash_daq as daq
 import pandas as pd
+from datetime import date
 
 # Imports from this application
 from app import app
@@ -230,7 +231,7 @@ row = html.Div(
                 ),
             ]
         ),
-        # 7th Row. Includes host_identity_verified, instant_bookable
+        # 7th Row. Includes host_identity_verified, instant_bookable, host_since_days
         dbc.Row(
             [
                 dbc.Col(
@@ -253,6 +254,15 @@ row = html.Div(
                             label='Blue = True',
                             className='mb-4',
                         ),
+                    ],
+                ),
+                dbc.Col(
+                    [
+                        dcc.Markdown("##### Host Start Date", className='mb-1'),
+                        dcc.DatePickerSingle(
+                            id='days-host',
+                            date=date(2010, 1, 1)
+                        )
                     ],
                 ),
             ]
@@ -341,7 +351,7 @@ layout = row
 #         Input('property', 'value'), Input('room', 'value'), Input('accomadates', 'value'),
 #         Input('bathrooms', 'value'), Input('bedrooms', 'value'), Input('beds', 'value'),
 #         Input('bedtype', 'value'), Input('cancellation', 'value'), Input('cleaning', 'value'),
-#         Input('city', 'value'), Input('verified-host', 'value'), Input('bookable', 'value'),
+#         Input('city', 'value'), Input('verified-host', 'value'), Input('bookable', 'value'), Input('days-host', 'value'),
 #         Input('neighborhood', 'value'), Input('zipcode', 'value'), Input('amenities', 'value')
 #     ],
 # )
@@ -351,14 +361,14 @@ layout = row
 #             'property', 'room', 'accomadates', 'bathrooms,',
 #             'bedrooms', 'beds', 'bedtype', 'cancellation',
 #             'cleaning', 'city', 'verified-host', 'bookable',
-#             'neighborhood', 'zipcode', 'amenities'
+#             'days-host', 'neighborhood', 'zipcode', 'amenities'
 #         ], 
 #         data=[
 #             [
 #                 property, room, accomadates, bathrooms,
 #                 bedrooms, beds, bedtype, cancellation,
 #                 cleaning, city, verified-host, bookable,
-#                 neighborhood, zipcode
+#                 days-host, neighborhood, zipcode, 'amenities'
 #             ]
 #         ]
 #     )
