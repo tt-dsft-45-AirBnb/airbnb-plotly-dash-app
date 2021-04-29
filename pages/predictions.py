@@ -11,7 +11,7 @@ from tensorflow import keras
 
 # Imports from this application
 from app import app
-from pred_lists import zip_code, neighborhood
+from pred_lists import zip_code, neighborhood, amenities
 from airbnb_model import *
 
 
@@ -307,30 +307,7 @@ row1 = html.Div(
                         dcc.Markdown("##### Amenities", className='mb-1'),
                         dcc.Checklist(
                             id='amenities',
-                            options=[
-                                {'label': 'TV', 'value': 'TV'},
-                                {'label': 'Cable TV', 'value': 'Cable TV'},
-                                {'label': 'Kitchen', 'value': 'Kitchen'},
-                                {'label': 'Free parking on premises ', 'value': 'Free parking on premises'},
-                                {'label': 'Breakfast ', 'value': 'Breakfast'},
-                                {'label': 'Elevator in building ', 'value': 'Elevator in building'},
-                                {'label': 'Heating ', 'value': 'Heating'},
-                                {'label': 'Washer ', 'value': 'Washer'},
-                                {'label': 'Dryer ', 'value': 'Dryer'},
-                                {'label': 'Smoke detector ', 'value': 'Smoke detector'},
-                                {'label': 'First aid kit ', 'value': 'First aid kit'},
-                                {'label': 'Safety card ', 'value': 'Safety card'},
-                                {'label': 'Fire extinguisher ', 'value': 'Fire extinguisher'},
-                                {'label': 'Hair dryer ', 'value': 'Hair dryer'},
-                                {'label': 'Laptop friendly workspace ', 'value': 'Laptop friendly workspace'},
-                                {'label': 'Wireless Internet ', 'value': 'Wireless Internet'},
-                                {'label': 'Air conditioning ', 'value': 'Air conditioning'},
-                                {'label': 'Gym ', 'value': 'Gym'},
-                                {'label': 'Carbon monoxide detector ', 'value': 'Carbon monoxide detector'},
-                                {'label': 'First aid kit ', 'value': 'First aid kit'},
-                                {'label': 'Wheelchair accessible ', 'value': 'Wheelchair accessible'},
-                                {'label': 'Family/kid friendly ', 'value': 'Family/kid friendly'},
-                            ],
+                            options=amenities.amenity,
                             inputStyle={"margin-right": '8px'},
                             labelStyle = {'margin-right':'15px'}
                         )
