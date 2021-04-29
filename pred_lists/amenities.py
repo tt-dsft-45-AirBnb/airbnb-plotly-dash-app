@@ -37,6 +37,5 @@ amenity = [
     {'label': 'Buzzer/wireless intercom ', 'value': 'Buzzer/wireless intercom'},
     {'label': 'Self Check-In ', 'value': 'Self Check-In'},
     {'label': 'Lockbox ', 'value': 'Lockbox'},
-    {'label': 'Kitchen,Essentials ', 'value': 'Kitchen,Essentials'},
     {'label': 'Cat(s) ', 'value': 'Cat(s)'},
 ]

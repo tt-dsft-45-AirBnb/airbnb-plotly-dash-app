@@ -11,7 +11,7 @@ from tensorflow import keras
 
 # Imports from this application
 from app import app
-from pred_lists import zip_code, neighborhood, amenities
+from pred_lists import zip_code, neighborhood, amenities, property, bathrooms
 from airbnb_model import *
 
 
@@ -34,41 +34,7 @@ row1 = html.Div(
                         dcc.Markdown("##### Property Type", className='mb-1'),
                         dcc.Dropdown(
                             id='property',
-                            options=[
-                                {'label': 'Apartment', 'value': 'Apartment'},
-                                {'label': 'House', 'value': 'House'},
-                                {'label': 'Condominium', 'value': 'Condominium'},
-                                {'label': 'Townhouse', 'value': 'Townhouse'},
-                                {'label': 'Loft', 'value': 'Loft'},
-                                {'label': 'Other', 'value': 'Other'},
-                                {'label': 'Guesthouse', 'value': 'Guesthouse'},
-                                {'label': 'Bed & Breakfast', 'value': 'Bed & Breakfast'},
-                                {'label': 'Bungalow', 'value': 'Bungalow'},
-                                {'label': 'Dorm', 'value': 'Dorm'},
-                                {'label': 'Guest suite', 'value': 'Guest suite'},
-                                {'label': 'Villa', 'value': 'Villa'},
-                                {'label': 'Timeshare', 'value': 'Timeshare'},
-                                {'label': 'In-law', 'value': 'In-law'},
-                                {'label': 'Boutique hotel', 'value': 'Boutique hotel'},
-                                {'label': 'Hostel', 'value': 'Hostel'},
-                                {'label': 'Camper/RV', 'value': 'Camper/RV'},
-                                {'label': 'Cabin', 'value': 'Cabin'},
-                                {'label': 'Boat', 'value': 'Boat'},
-                                {'label': 'Serviced apartment', 'value': 'Serviced apartment'},
-                                {'label': 'Castle', 'value': 'Castle'},
-                                {'label': 'Tent', 'value': 'Tent'},
-                                {'label': 'Vacation home', 'value': 'Vacation home'},
-                                {'label': 'Yurt', 'value': 'Yurt'},
-                                {'label': 'Treehouse', 'value': 'Treehouse'},
-                                {'label': 'Chalet', 'value': 'Chalet'},
-                                {'label': 'Hut', 'value': 'Hut'},
-                                {'label': 'Tipi', 'value': 'Tipi'},
-                                {'label': 'Earth House', 'value': 'Earth House'},
-                                {'label': 'Cave', 'value': 'Cave'},
-                                {'label': 'Casa particular', 'value': 'Casa particular'},
-                                {'label': 'Train', 'value': 'Train'}
-                            ],
-                            # value='Apartment',
+                            options=property.property_type,
                             className='mb-4',
                         ),
                     ],
@@ -113,25 +79,7 @@ row1 = html.Div(
                             min=0,
                             max=8,
                             step=0.5,
-                            marks={
-                                0: '0',
-                                0.5: '0.5',
-                                1: '1',
-                                1.5: '1.5',
-                                2: '2',
-                                2.5: '2.5',
-                                3: '3',
-                                3.5: '3.5',
-                                4: '4',
-                                4.5: '4.5',
-                                5: '5',
-                                5.5: '5.5',
-                                6: '6',
-                                6.5: '6.5',
-                                7: '7',
-                                7.5: '7.5',
-                                8: '8'
-                            },    
+                            marks=bathrooms.bathrooms,
                             value=1,
                             className='mb-4',
                         ),
@@ -330,7 +278,7 @@ row2 = html.Div(
 )
 
 
-
+# callback function for output
 @app.callback(
     Output('prediction-content', 'children'),
     [
