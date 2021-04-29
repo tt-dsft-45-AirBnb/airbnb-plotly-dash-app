@@ -7,13 +7,20 @@ from dash.dependencies import Input, Output
 import dash_daq as daq
 import pandas as pd
 from datetime import date
+from tensorflow import keras
 
 # Imports from this application
 from app import app
 from pred_lists import zip_code, neighborhood
+from airbnb_model import *
 
 
-row = html.Div(
+# load model trained on airbnb data
+model = keras.models.load_model('airbnb_model')
+print('Model loaded successfully')
+
+# create input form for User
+row1 = html.Div(
     [
         # 1st Row. Introductory Marks
         dbc.Row(dbc.Col(html.Div('''Welcome to our predictions page! Fill out the form as accurately as possible,
@@ -238,7 +245,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### You Are a Verified Host", className='mb-1'),
                         daq.BooleanSwitch(
-                            id='verified-host',
+                            id='verified_host',
                             on=True,
                             label='Blue = True',
                             className='mb-4',
@@ -260,7 +267,7 @@ row = html.Div(
                     [
                         dcc.Markdown("##### Host Start Date", className='mb-1'),
                         dcc.DatePickerSingle(
-                            id='days-host',
+                            id='days_host',
                             date=date(2010, 1, 1)
                         )
                     ],
@@ -334,43 +341,53 @@ row = html.Div(
     ]
 )
 
-layout = row
+
+# output section that returns estimated price based off inputs
+row2 = html.Div(
+    dbc.Col(
+        [
+            html.H2('Price Estimation', className='mb-5'), 
+            html.Div(id='prediction-content', className='lead')
+        ]
+    )
+)
 
 
-# column2 = dbc.Col(
-#     [
-#         html.H2('Price Estimation', className='mb-5'), 
-#         html.Div(id='prediction-content', className='lead')
-#     ]
-# )
+
+@app.callback(
+    Output('prediction-content', 'children'),
+    [
+        Input('property', 'value'), Input('room', 'value'), Input('accomadates', 'value'),
+        Input('bathrooms', 'value'), Input('bedrooms', 'value'), Input('beds', 'value'),
+        Input('bedtype', 'value'), Input('cancellation', 'value'), Input('cleaning', 'value'),
+        Input('city', 'value'), Input('verified_host', 'value'), Input('bookable', 'value'), Input('days_host', 'value'),
+        Input('neighborhood', 'value'), Input('zipcode', 'value'), Input('amenities', 'value')
+    ],
+)
+def predict(
+    property, room, accomadates, bathrooms,
+    bedrooms, beds, bedtype, cancellation,
+    cleaning, city, verified_host, bookable,
+    days_host, neighborhood, zipcode, amenities):
+    df = pd.DataFrame(
+        columns=[
+            'property', 'room', 'accomadates', 'bathrooms,',
+            'bedrooms', 'beds', 'bedtype', 'cancellation',
+            'cleaning', 'city', 'verified_host', 'bookable',
+            'days_host', 'neighborhood', 'zipcode', 'amenities'
+        ], 
+        data=[
+            [
+                property, room, accomadates, bathrooms,
+                bedrooms, beds, bedtype, cancellation,
+                cleaning, city, verified_host, bookable,
+                days_host, neighborhood, zipcode, amenities
+            ]
+        ]
+    )
+    y_pred = model.predict(df)[0]
+    return f'{y_pred:.0f} dollars per day'
 
 
-# @app.callback(
-#     Output('prediction-content', 'children'),
-#     [
-#         Input('property', 'value'), Input('room', 'value'), Input('accomadates', 'value'),
-#         Input('bathrooms', 'value'), Input('bedrooms', 'value'), Input('beds', 'value'),
-#         Input('bedtype', 'value'), Input('cancellation', 'value'), Input('cleaning', 'value'),
-#         Input('city', 'value'), Input('verified-host', 'value'), Input('bookable', 'value'), Input('days-host', 'value'),
-#         Input('neighborhood', 'value'), Input('zipcode', 'value'), Input('amenities', 'value')
-#     ],
-# )
-# def predict(year, continent):
-#     df = pd.DataFrame(
-#         columns=[
-#             'property', 'room', 'accomadates', 'bathrooms,',
-#             'bedrooms', 'beds', 'bedtype', 'cancellation',
-#             'cleaning', 'city', 'verified-host', 'bookable',
-#             'days-host', 'neighborhood', 'zipcode', 'amenities'
-#         ], 
-#         data=[
-#             [
-#                 property, room, accomadates, bathrooms,
-#                 bedrooms, beds, bedtype, cancellation,
-#                 cleaning, city, verified-host, bookable,
-#                 days-host, neighborhood, zipcode, 'amenities'
-#             ]
-#         ]
-#     )
-#     y_pred = pipeline.predict(df)[0]
-#     return f'{y_pred:.0f} dollars per day'
+# layout of the page
+layout = dbc.Row([row1, row2])
