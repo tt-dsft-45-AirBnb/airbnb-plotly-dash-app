@@ -15,7 +15,7 @@ import sklearn
 # Imports from this application
 from app import app
 from pred_lists import zip_code, neighborhood, amenities, property
-from pred_lists import bathrooms_marks
+from pred_lists import bathrooms_marks, amenities_marks
 from airbnb_model import *
 from model_tools_class import mt
 
@@ -269,18 +269,13 @@ row1 = html.Div(
                 dbc.Col(
                     [
                         dcc.Markdown("##### Amenities", className='mb-1'),
-                        # dcc.Checklist(
-                        #     id='amenities',
-                        #     options=amenities.amenity,
-                        #     inputStyle={"margin-right": '8px'},
-                        #     labelStyle = {'margin-right':'15px'}
-                        # )
                         dcc.Slider(
                             id='amenities',
                             min=0,
                             max=39,
                             step=1,
                             value=1,
+                            marks=amenities_marks.amenity_marks,
                             className='mb-4',
                             marks=amenities_marks.amenity_marks
                         ),
@@ -324,32 +319,13 @@ button = html.Div(
         State('amenities', component_property='value')
     ]
 )
-<<<<<<< HEAD
-<<<<<<< HEAD
 def on_button_click(n, property, room, accomadates, bathrooms, bedrooms, beds, bedtype, cancellation, city, verified_host, bookable, days_host, neighborhood, zipcode, amenities):
-=======
-=======
->>>>>>> 6a992d5 (edit run.py)
-def on_button_click(
-    n, property, room, accomadates, bathrooms,
-    bedrooms, beds, bedtype, cancellation,
-    city, verified_host, bookable, days_host,
-    neighborhood, zipcode, amenitie
-):
->>>>>>> e49fbf0 (removed unnessary files. added docstrings to pred_lists files)
     '''
     on_button_click function passes information from the model on clicl
     '''
-=======
-def on_button_click(n, property, room, accomadates, bathrooms, bedrooms, beds, bedtype, cancellation, city, verified_host, bookable, days_host, neighborhood, zipcode, amenities):
->>>>>>> parent of 832c697 (added amenity marks. created docstrings for functions)
     if n is None:
         return "Not clicked."
     else:
-<<<<<<< HEAD
-=======
-        # return bathrooms
->>>>>>> 6a992d5 (edit run.py)
         return predict(property, room, accomadates, bathrooms, bedrooms, beds, bedtype, cancellation, city, verified_host, bookable, days_host, neighborhood, zipcode, amenities)[0]
 
 
@@ -436,7 +412,6 @@ def list_to_string(text):
     return str1
 
 
-<<<<<<< HEAD
 def get_confirm_df(input_list_objects, input_list_numbers, string_value_list):
     '''
     function to create confirmation df for viewing
@@ -451,7 +426,5 @@ def get_confirm_df(input_list_objects, input_list_numbers, string_value_list):
     return confirm_df
 
 
-=======
->>>>>>> e49fbf0 (removed unnessary files. added docstrings to pred_lists files)
 # layout of the page
 layout = dbc.Row([row1, row2, button])
