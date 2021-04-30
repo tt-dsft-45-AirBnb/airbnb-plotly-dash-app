@@ -15,7 +15,7 @@ import sklearn
 # Imports from this application
 from app import app
 from pred_lists import zip_code, neighborhood, amenities, property
-from pred_lists import bathrooms_marks, amenities_marks
+from pred_lists import bathrooms_marks
 from airbnb_model import *
 from model_tools_class import mt
 
@@ -269,13 +269,18 @@ row1 = html.Div(
                 dbc.Col(
                     [
                         dcc.Markdown("##### Amenities", className='mb-1'),
+                        # dcc.Checklist(
+                        #     id='amenities',
+                        #     options=amenities.amenity,
+                        #     inputStyle={"margin-right": '8px'},
+                        #     labelStyle = {'margin-right':'15px'}
+                        # )
                         dcc.Slider(
                             id='amenities',
                             min=0,
                             max=39,
                             step=1,
                             value=1,
-                            marks=amenities_marks.amenity_marks,
                             className='mb-4',
                         ),
                     ],
@@ -319,6 +324,7 @@ button = html.Div(
         State('amenities', component_property='value')
     ]
 )
+<<<<<<< HEAD
 def on_button_click(
     n, property, room, accomadates, bathrooms,
     bedrooms, beds, bedtype, cancellation,
@@ -328,13 +334,14 @@ def on_button_click(
     '''
     on_button_click function passes information from the model on clicl
     '''
+=======
+def on_button_click(n, property, room, accomadates, bathrooms, bedrooms, beds, bedtype, cancellation, city, verified_host, bookable, days_host, neighborhood, zipcode, amenities):
+>>>>>>> parent of 832c697 (added amenity marks. created docstrings for functions)
     if n is None:
         return "Not clicked."
     else:
-        return predict(property, room, accomadates,
-        bathrooms, bedrooms, beds, bedtype,
-        cancellation, city, verified_host, bookable,
-        days_host, neighborhood, zipcode, amenities)[0]
+        # return bathrooms
+        return predict(property, room, accomadates, bathrooms, bedrooms, beds, bedtype, cancellation, city, verified_host, bookable, days_host, neighborhood, zipcode, amenities)[0]
 
 
 def predict(
