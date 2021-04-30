@@ -338,6 +338,10 @@ def predict(
     city, verified_host, bookable,
     days_host, neighborhood, zipcode, amenities
 ):
+    '''
+    predict function creates a dataframe and runs the dataframe in the
+    get_prediction function
+    '''
     df = pd.DataFrame(
         columns=[
             'property_type', 'room_type', 'accommodates', 'bathrooms',
