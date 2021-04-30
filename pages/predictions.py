@@ -325,6 +325,9 @@ button = html.Div(
     ]
 )
 def on_button_click(n, property, room, accomadates, bathrooms, bedrooms, beds, bedtype, cancellation, city, verified_host, bookable, days_host, neighborhood, zipcode, amenities):
+    '''
+    on_button_click function passes information from the model on clicl
+    '''
     if n is None:
         return "Not clicked."
     else:
