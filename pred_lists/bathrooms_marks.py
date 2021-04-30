@@ -1,3 +1,7 @@
+''' 
+Used for creating marks for the input bathroom slider
+in prediction.py
+'''
 bathroom_marks = {
     0: '0',
     0.5: '0.5',
