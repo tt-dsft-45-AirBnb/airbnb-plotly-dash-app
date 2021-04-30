@@ -1,4 +1,4 @@
 # airbnb-plotly-dash-app
 plotly dash app for AirBnB price app
 
-**heroku**: https://airbnb-price-ds.herokuapp.com/
+**heroku**: https://airbnb-app-tt45.herokuapp.com/
