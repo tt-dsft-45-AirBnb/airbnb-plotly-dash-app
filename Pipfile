@@ -12,7 +12,6 @@ gunicorn = "*"
 plotly = "*"
 pandas = "*"
 dash-daq = "*"
-tensorflow = "*"
 scikit-learn = "==0.24.2"
 sklearn = "*"
 
