@@ -325,6 +325,7 @@ button = html.Div(
     ]
 )
 <<<<<<< HEAD
+<<<<<<< HEAD
 def on_button_click(
     n, property, room, accomadates, bathrooms,
     bedrooms, beds, bedtype, cancellation,
@@ -334,6 +335,9 @@ def on_button_click(
     '''
     on_button_click function passes information from the model on clicl
     '''
+=======
+def on_button_click(n, property, room, accomadates, bathrooms, bedrooms, beds, bedtype, cancellation, city, verified_host, bookable, days_host, neighborhood, zipcode, amenities):
+>>>>>>> parent of 832c697 (added amenity marks. created docstrings for functions)
 =======
 def on_button_click(n, property, room, accomadates, bathrooms, bedrooms, beds, bedtype, cancellation, city, verified_host, bookable, days_host, neighborhood, zipcode, amenities):
 >>>>>>> parent of 832c697 (added amenity marks. created docstrings for functions)
