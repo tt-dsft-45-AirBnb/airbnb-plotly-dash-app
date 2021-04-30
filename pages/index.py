@@ -9,24 +9,30 @@ import plotly.express as px
 # Imports from this application
 from app import app
 
+
 # 2 column layout. 1st column width = 4/12
-# https://dash-bootstrap-components.opensource.faculty.ai/l/components/layout
 column1 = dbc.Col(
     [
         dcc.Markdown(
             """
-        
+
             ## Predict your AirBnB Listing Price
 
-            Attention property owners! Are you looking to earn some extra money off the property you own? 
-            Do you feel AirBnB is the most convenient site to help rent out your property? 
+            Attention property owners! Are you looking to earn some
+            extra money off the property you own? Do you feel AirBnB
+            is the most convenient site to help rent out your property?
             But you aren't sure what price to exactly list your property?
-            Then you in luck. Our site will help you predict exactly what price you should list your property ny comparing similar
-            properties in your neighborhoor. Click the button below and see how valuable your house is today.
-            
+            Then you are in in luck. Our site will help you predict
+            exactly what price you should list your property by comparing
+            similar properties in your neighborhoor. Click the button
+            below and see how valuable your house is today.
+
             """
         ),
-        dcc.Link(dbc.Button('Predict Your Price', color='primary'), href='/predictions')
+        dcc.Link(
+            dbc.Button('Predict Your Price', color='primary'),
+            href='/predictions'
+        )
     ],
     md=4,
 )
