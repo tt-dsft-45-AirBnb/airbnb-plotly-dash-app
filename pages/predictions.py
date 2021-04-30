@@ -275,6 +275,7 @@ row1 = html.Div(
                             max=39,
                             step=1,
                             value=1,
+                            marks=amenities_marks.amenity_marks,
                             className='mb-4',
                             marks=amenities_marks.amenity_marks
                         ),
