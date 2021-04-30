@@ -1,4 +1,4 @@
-bathrooms = {
+bathroom_marks = {
     0: '0',
     0.5: '0.5',
     1: '1',
