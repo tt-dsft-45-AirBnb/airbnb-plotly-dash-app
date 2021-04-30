@@ -1,3 +1,7 @@
+''' 
+Used for creating marks for the input amenity slider
+in prediction.py
+'''
 amenity_marks = {
     0: '0',
     1: '1',

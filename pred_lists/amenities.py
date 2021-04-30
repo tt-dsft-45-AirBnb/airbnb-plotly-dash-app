@@ -1,3 +1,4 @@
+# A list of amenities to display to a user
 amenity = [
     {'label': 'TV', 'value': 'TV'},
     {'label': 'Cable TV', 'value': 'Cable TV'},

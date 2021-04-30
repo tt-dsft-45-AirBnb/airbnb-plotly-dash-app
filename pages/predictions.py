@@ -325,6 +325,9 @@ def on_button_click(
     city, verified_host, bookable, days_host,
     neighborhood, zipcode, amenitie
 ):
+    '''
+    on_button_click function passes information from the model on clicl
+    '''
     if n is None:
         return "Not clicked."
     else:
@@ -340,6 +343,10 @@ def predict(
     city, verified_host, bookable,
     days_host, neighborhood, zipcode, amenities
 ):
+    '''
+    predict function creates a dataframe and runs the dataframe in the
+    get_prediction function
+    '''
     df = pd.DataFrame(
         columns=[
             'property_type', 'room_type', 'accommodates', 'bathrooms',
@@ -359,7 +366,25 @@ def predict(
     return get_prediction(df)
 
 
+def get_confirm_df(input_list_objects, input_list_numbers, string_value_list):
+    '''
+    function to create confirmation df for viewing
+    purposes for debugging
+    '''
+    df_rows = []
+    for i in np.arange(9):
+        df_rows.append((model_columns[i], string_value_list[i], input_list_objects[0][i]))
+    for i in np.arange(9, len(model_columns)):
+        df_rows.append((model_columns[i], input_list_numbers[i-9], input_list_numbers[i-9]))
+    confirm_df = pd.DataFrame(df_rows, columns=['Variable', 'Value', 'Encoded'])
+    return confirm_df
+
+
 def get_prediction(df):
+    '''
+    function takes in a dataframe, transforms data, and runs 
+    data into a sequential model to return a prediction 
+    '''
     string_variable_list = ['property_type', 'room_type', 'bed_type',
                             'cancellation_policy', 'city', 'host_identity_verified',
                             'instant_bookable', 'neighbourhood', 'zipcode']
@@ -388,20 +413,11 @@ def get_prediction(df):
 
 
 def list_to_string(text):
+    '''function to convert a list to a string'''
     str1 = ""
     for x in text:
         str1 += str(x)
     return str1
-
-
-def get_confirm_df(input_list_objects, input_list_numbers, string_value_list):
-    df_rows = []
-    for i in np.arange(9):
-        df_rows.append((model_columns[i], string_value_list[i], input_list_objects[0][i]))
-    for i in np.arange(9, len(model_columns)):
-        df_rows.append((model_columns[i], input_list_numbers[i-9], input_list_numbers[i-9]))
-    confirm_df = pd.DataFrame(df_rows, columns=['Variable', 'Value', 'Encoded'])
-    return confirm_df
 
 
 # layout of the page
