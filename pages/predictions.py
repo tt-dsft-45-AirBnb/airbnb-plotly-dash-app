@@ -319,7 +319,16 @@ button = html.Div(
         State('amenities', component_property='value')
     ]
 )
+<<<<<<< HEAD
 def on_button_click(n, property, room, accomadates, bathrooms, bedrooms, beds, bedtype, cancellation, city, verified_host, bookable, days_host, neighborhood, zipcode, amenities):
+=======
+def on_button_click(
+    n, property, room, accomadates, bathrooms,
+    bedrooms, beds, bedtype, cancellation,
+    city, verified_host, bookable, days_host,
+    neighborhood, zipcode, amenitie
+):
+>>>>>>> e49fbf0 (removed unnessary files. added docstrings to pred_lists files)
     '''
     on_button_click function passes information from the model on clicl
     '''
@@ -356,6 +365,20 @@ def predict(
         ]
     )
     return get_prediction(df)
+
+
+def get_confirm_df(input_list_objects, input_list_numbers, string_value_list):
+    '''
+    function to create confirmation df for viewing
+    purposes for debugging
+    '''
+    df_rows = []
+    for i in np.arange(9):
+        df_rows.append((model_columns[i], string_value_list[i], input_list_objects[0][i]))
+    for i in np.arange(9, len(model_columns)):
+        df_rows.append((model_columns[i], input_list_numbers[i-9], input_list_numbers[i-9]))
+    confirm_df = pd.DataFrame(df_rows, columns=['Variable', 'Value', 'Encoded'])
+    return confirm_df
 
 
 def get_prediction(df):
@@ -398,6 +421,7 @@ def list_to_string(text):
     return str1
 
 
+<<<<<<< HEAD
 def get_confirm_df(input_list_objects, input_list_numbers, string_value_list):
     '''
     function to create confirmation df for viewing
@@ -412,5 +436,7 @@ def get_confirm_df(input_list_objects, input_list_numbers, string_value_list):
     return confirm_df
 
 
+=======
+>>>>>>> e49fbf0 (removed unnessary files. added docstrings to pred_lists files)
 # layout of the page
 layout = dbc.Row([row1, row2, button])
