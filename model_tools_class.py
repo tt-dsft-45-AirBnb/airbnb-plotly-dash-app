@@ -41,16 +41,10 @@ class mt():
             
             It is used to create a new feature in the data set 'host_since_days'
         '''
-        if type(datet) == float:
-            return 0
-        if type(datet) == str:
-            dates = datet.split('-')
-            days = ((current_time.year - int(dates[0])) * 365) + ((current_time.month - int(dates[1])) * 30) + int(dates[2])
-        if type(datet) == list:
-            days = ((current_time.year - datet[0]) * 365) + ((current_time.month - datet[1]) * 30) + datet[2]
-        else:
-            days = 0
+        dates = datet.split('-')
+        days = ((current_time.year - int(dates[0])) * 365) + ((current_time.month - int(dates[1])) * 30) + int(dates[2])
         return days
+
 
     def get_token_doc():
         '''

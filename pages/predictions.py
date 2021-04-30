@@ -215,24 +215,24 @@ row1 = html.Div(
                 dbc.Col(
                     [
                         dcc.Markdown("##### You Are a Verified Host", className='mb-1'),
-                        daq.BooleanSwitch(
-                            id='verified_host',
-                            on=True,
-                            label='Blue = True',
-                            className='mb-4',
-                        ),
-                    ],
+                        dcc.Dropdown(
+                            id='bookable',
+                            options=[
+                                {'label': 'True', 'value': 'True'},
+                                {'label': 'False', 'value': 'False'},
+                            ],className='mb-4',)
+                    ]
                 ),
                 dbc.Col(
                     [
                         dcc.Markdown("##### Is Instantly Bookable", className='mb-1'),
-                        daq.BooleanSwitch(
-                            id='bookable',
-                            on=True,
-                            label='Blue = True',
-                            className='mb-4',
-                        ),
-                    ],
+                        dcc.Dropdown(
+                            id='verified_host',
+                            options=[
+                                {'label': 'True', 'value': 'True'},
+                                {'label': 'False', 'value': 'False'},
+                            ],className='mb-4')
+                    ]
                 ),
                 dbc.Col(
                     [
@@ -325,7 +325,7 @@ button = html.Div(
         State('bedrooms', component_property='value'), State('beds', component_property='value'),
         State('bedtype', component_property='value'), State('cancellation', component_property='value'),
         State('city', component_property='value'), State('verified_host', component_property='value'),
-        State('bookable', component_property='value'), State('days_host', component_property='value'),
+        State('bookable', component_property='value'), State('days_host', 'date'),
         State('neighborhood', component_property='value'), State('zipcode', component_property='value'),
         State('amenities', component_property='value')]
 )
@@ -374,45 +374,6 @@ def predict(
     return get_prediction(df)
     # return f'{y_pred:.0f} dollars per day'
 def get_prediction(df):
-    df=pd.DataFrame(
-        data=[
-            [
-                'Apartment',
-                'Entire home/apt',
-                'Real Bed',
-                'strict',
-                'NYC',
-                'True',
-                'False',
-                'Brooklyn Heights',
-                '11201',
-                8,
-                3,
-                1.0,
-                1.0,
-                1.0,
-                4074
-            ]
-        ], 
-        columns=[
-            'property_type',
-            'room_type',
-            'bed_type',
-            'cancellation_policy',
-            'city',
-            'host_identity_verified',
-            'instant_bookable',
-            'neighbourhood',
-            'zipcode',
-            'amenities',
-            'accommodates',
-            'bathrooms',
-            'bedrooms',
-            'beds',
-            'host_since_days'
-        ]
-            
-    )
     string_variable_list = ['property_type','room_type','bed_type',
                             'cancellation_policy','city','host_identity_verified',
                             'instant_bookable','neighbourhood','zipcode']
@@ -422,11 +383,10 @@ def get_prediction(df):
     for x in string_variable_list:
         string_value_list.append(df[x])
     for x in number_variable_list:
-        if type(df[x]) != str and type(df[x]) != np.int64 and type(df[x]) != np.float64 and type(df[x]) != np.bool:
-            number_value_list.append(mt.get_days(df[x]))
+        if x != 'host_since_days':
+            number_value_list.append(df[x].values[0])
         else:
-            number_value_list.append(df[x])
-
+            number_value_list.append(mt.get_days(df[x].values[0]))
     string_vectorized= oe.transform(np.array(string_value_list).reshape(1,-1))
     whole_input_vector = string_vectorized[0].tolist() + number_value_list
     confirm_df = get_confirm_df(string_vectorized,number_value_list,string_value_list)
@@ -434,6 +394,12 @@ def get_prediction(df):
     prediction = model.predict(np.array(whole_input_vector).reshape(1,-1))
     return prediction[0][0], confirm_df
 
+
+def list_to_string(text):
+    str1 = ""
+    for x in text:
+        str1 += str(x)
+    return str1
 
 def get_confirm_df(input_list_objects,input_list_numbers,string_value_list):
     df_rows = []
