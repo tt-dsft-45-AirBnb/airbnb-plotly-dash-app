@@ -15,7 +15,7 @@ import sklearn
 # Imports from this application
 from app import app
 from pred_lists import zip_code, neighborhood, amenities, property
-from pred_lists import bathrooms_marks
+from pred_lists import bathrooms_marks, amenities_marks
 from airbnb_model import *
 from model_tools_class import mt
 
@@ -269,12 +269,6 @@ row1 = html.Div(
                 dbc.Col(
                     [
                         dcc.Markdown("##### Amenities", className='mb-1'),
-                        # dcc.Checklist(
-                        #     id='amenities',
-                        #     options=amenities.amenity,
-                        #     inputStyle={"margin-right": '8px'},
-                        #     labelStyle = {'margin-right':'15px'}
-                        # )
                         dcc.Slider(
                             id='amenities',
                             min=0,
@@ -282,6 +276,7 @@ row1 = html.Div(
                             step=1,
                             value=1,
                             className='mb-4',
+                            marks=amenities_marks.amenity_marks
                         ),
                     ],
                 ),
@@ -296,7 +291,6 @@ row2 = html.Div(
     dbc.Col(
         [
             html.H2('Price Estimation', className='mb-5'),
-            # html.Div(id='prediction-content', className='lead')
         ]
     )
 )
@@ -331,7 +325,6 @@ def on_button_click(n, property, room, accomadates, bathrooms, bedrooms, beds, b
     if n is None:
         return "Not clicked."
     else:
-        # return bathrooms
         return predict(property, room, accomadates, bathrooms, bedrooms, beds, bedtype, cancellation, city, verified_host, bookable, days_host, neighborhood, zipcode, amenities)[0]
 
 
@@ -365,6 +358,10 @@ def predict(
 
 
 def get_prediction(df):
+    '''
+    function takes in a dataframe, transforms data, and runs 
+    data into a sequential model to return a prediction 
+    '''
     string_variable_list = ['property_type', 'room_type', 'bed_type',
                             'cancellation_policy', 'city', 'host_identity_verified',
                             'instant_bookable', 'neighbourhood', 'zipcode']
@@ -393,6 +390,7 @@ def get_prediction(df):
 
 
 def list_to_string(text):
+    '''function to convert a list to a string'''
     str1 = ""
     for x in text:
         str1 += str(x)
@@ -400,6 +398,10 @@ def list_to_string(text):
 
 
 def get_confirm_df(input_list_objects, input_list_numbers, string_value_list):
+    '''
+    function to create confirmation df for viewing
+    purposes for debugging
+    '''
     df_rows = []
     for i in np.arange(9):
         df_rows.append((model_columns[i], string_value_list[i], input_list_objects[0][i]))

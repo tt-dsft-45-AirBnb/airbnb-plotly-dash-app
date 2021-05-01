@@ -1,3 +1,7 @@
+''' 
+Used for creating all dropdown values for the 
+neighborhood dropdown in prediction.py
+'''
 neighborhoods = [
     {'label': 'Williamsburg', 'value': 'Williamsburg'},
     {'label': 'Bedford-Stuyvesant', 'value': 'Bedford-Stuyvesant'},

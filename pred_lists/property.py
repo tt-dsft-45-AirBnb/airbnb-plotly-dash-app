@@ -1,3 +1,7 @@
+''' 
+Used for creating all dropdown values for the 
+property_type dropdown in predictions.py
+'''
 property_type = [
     {'label': 'Apartment', 'value': 'Apartment'},
     {'label': 'House', 'value': 'House'},

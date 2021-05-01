@@ -7,7 +7,7 @@ from dash.dependencies import Input, Output
 
 # Imports from this application
 from app import app, server
-from pages import index, predictions, insights, process
+from pages import index, predictions
 
 # Navbar docs: https://dash-bootstrap-components.opensource.faculty.ai/l/components/navbar
 navbar = dbc.NavbarSimple(
@@ -48,9 +48,6 @@ footer = dbc.Container(
 )
 
 # Layout docs:
-# html.Div: https://dash.plot.ly/getting-started
-# dcc.Location: https://dash.plot.ly/dash-core-components/location
-# dbc.Container: https://dash-bootstrap-components.opensource.faculty.ai/l/components/layout
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False), 
     navbar, 
@@ -68,10 +65,10 @@ def display_page(pathname):
         return index.layout
     elif pathname == '/predictions':
         return predictions.layout
-    elif pathname == '/insights':
-        return insights.layout
-    elif pathname == '/process':
-        return process.layout
+    # elif pathname == '/insights':
+    #     return insights.layout
+    # elif pathname == '/process':
+    #     return process.layout
     else:
         return dcc.Markdown('## Page not found')
 

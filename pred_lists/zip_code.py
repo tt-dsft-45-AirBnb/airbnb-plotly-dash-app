@@ -1,3 +1,7 @@
+''' 
+Used for creating all dropdown values for the 
+zip codes dropdown in prediction.py
+'''
 total_zip = [
     {'label': '11211', 'value': '11211.0'},
     {'label': '11221', 'value': '11221'},
